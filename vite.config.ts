@@ -8,7 +8,6 @@ export default defineConfig({
   base: './',
   build: {
     outDir: 'docs',
-    // Keep existing docs assets (e.g., screenshot.svg)
-    emptyOutDir: false,
+    emptyOutDir: true,
   },
 });

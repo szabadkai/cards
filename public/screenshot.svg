@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="-10%" r="90%">
+      <stop offset="0" stop-color="#2a2b44"/>
+      <stop offset="0.4" stop-color="#141625"/>
+      <stop offset="1" stop-color="#0c0f1a"/>
+    </radialGradient>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff7ee3"/>
+      <stop offset="1" stop-color="#7afcff"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffd166"/>
+      <stop offset="1" stop-color="#ff6b6b"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a18cd1"/>
+      <stop offset="1" stop-color="#fbc2eb"/>
+    </linearGradient>
+    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#84fab0"/>
+      <stop offset="1" stop-color="#8fd3f4"/>
+    </linearGradient>
+    <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6d365"/>
+      <stop offset="1" stop-color="#fda085"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+
+  <text x="640" y="90" text-anchor="middle" font-family="ui-sans-serif,system-ui" font-size="44" font-weight="800" fill="#f3f5ff">Balatro‑Style Card Row</text>
+
+  <!-- Card row preview -->
+  <g transform="translate(280, 300)">
+    <!-- Slight overlap with a soft curve -->
+    <g transform="translate(0, -30) rotate(-10)">
+      <rect x="0" y="0" rx="16" ry="16" width="160" height="220" fill="url(#g1)" filter="url(#shadow)"/>
+    </g>
+    <g transform="translate(120, -10) rotate(-6)">
+      <rect x="0" y="0" rx="16" ry="16" width="160" height="220" fill="url(#g2)" filter="url(#shadow)"/>
+    </g>
+    <g transform="translate(240, -22) rotate(-3)">
+      <rect x="0" y="0" rx="16" ry="16" width="160" height="220" fill="url(#g3)" filter="url(#shadow)"/>
+    </g>
+    <g transform="translate(360, -30) rotate(0)">
+      <rect x="0" y="0" rx="16" ry="16" width="160" height="220" fill="url(#g4)" filter="url(#shadow)"/>
+    </g>
+    <g transform="translate(480, -22) rotate(3)">
+      <rect x="0" y="0" rx="16" ry="16" width="160" height="220" fill="url(#g5)" filter="url(#shadow)"/>
+    </g>
+    <g transform="translate(600, -10) rotate(6)">
+      <rect x="0" y="0" rx="16" ry="16" width="160" height="220" fill="url(#g2)" filter="url(#shadow)"/>
+    </g>
+  </g>
+
+  <text x="640" y="640" text-anchor="middle" font-family="ui-sans-serif,system-ui" font-size="16" fill="#cbd5ff" opacity="0.8">Drag to reorder • Space + arrows for keyboard • Press R to reset</text>
+</svg>
+
