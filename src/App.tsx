@@ -1,5 +1,15 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import CardRow, { Card } from './components/CardRow';
+import tomato from './assets/ingredients/tomato.svg';
+import basil from './assets/ingredients/basil.svg';
+import garlic from './assets/ingredients/garlic.svg';
+import oliveOil from './assets/ingredients/olive-oil.svg';
+import parmesan from './assets/ingredients/parmesan.svg';
+import lemon from './assets/ingredients/lemon.svg';
+import ginger from './assets/ingredients/ginger.svg';
+import cumin from './assets/ingredients/cumin.svg';
+import paprika from './assets/ingredients/paprika.svg';
+import thyme from './assets/ingredients/thyme.svg';
 
 export default function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
@@ -22,7 +32,18 @@ export default function App() {
     'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
   ];
 
-  const ingredients = ['Tomato','Basil','Garlic','Olive Oil','Parmesan','Lemon','Ginger','Cumin','Paprika','Thyme'];
+  const ingredients = [
+    { name: 'Tomato', img: tomato },
+    { name: 'Basil', img: basil },
+    { name: 'Garlic', img: garlic },
+    { name: 'Olive Oil', img: oliveOil },
+    { name: 'Parmesan', img: parmesan },
+    { name: 'Lemon', img: lemon },
+    { name: 'Ginger', img: ginger },
+    { name: 'Cumin', img: cumin },
+    { name: 'Paprika', img: paprika },
+    { name: 'Thyme', img: thyme },
+  ];
 
   const items: Card[] = useMemo(() => {
     if (deck === 'letters') {
@@ -32,10 +53,11 @@ export default function App() {
         gradient: gradients[i % gradients.length],
       }));
     }
-    return ingredients.map((name, i) => ({
-      id: name,
-      label: name,
+    return ingredients.map((it, i) => ({
+      id: it.name,
+      label: it.name,
       gradient: gradients[(i + 2) % gradients.length],
+      image: it.img,
     }));
   }, [deck]);
 

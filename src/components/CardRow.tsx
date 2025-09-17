@@ -23,6 +23,7 @@ export type Card = {
   id: string;
   label: string;
   gradient: string;
+  image?: string; // optional image URL for face artwork
 };
 
 function clamp(n: number, min: number, max: number) {
@@ -42,6 +43,7 @@ type DraggableCardProps = {
   id: string;
   label: string;
   gradient: string;
+  image?: string;
   index: number;
   overlapClamp: { normal: string; active: string };
   // Layout shaping
@@ -59,7 +61,7 @@ type DraggableCardProps = {
   theme: CardRowTheme;
 };
 
-function DraggableCard({ id, label, gradient, index, overlapClamp, baseY, baseRotate, hoverOffsetX, setOuterRef, dragMeta, ariaDescribedById, count, theme }: DraggableCardProps) {
+function DraggableCard({ id, label, gradient, image, index, overlapClamp, baseY, baseRotate, hoverOffsetX, setOuterRef, dragMeta, ariaDescribedById, count, theme }: DraggableCardProps) {
   const {
     attributes,
     listeners,
@@ -77,7 +79,7 @@ function DraggableCard({ id, label, gradient, index, overlapClamp, baseY, baseRo
   const tilt = useMotionValue(0);
   // Rotate a touch more based on drag x as well, then combine
   const rotFromX = useTransform(x, (latest) => clamp(latest * 0.04, -8, 8));
-  const rotateZ = useTransform([tilt, rotFromX], ([a, b]) => a + b);
+  const rotateZ = useTransform([tilt, rotFromX], (vals) => (vals[0] as number) + (vals[1] as number));
 
   useEffect(() => {
     const tx = transform?.x ?? 0;
@@ -207,15 +209,15 @@ function DraggableCard({ id, label, gradient, index, overlapClamp, baseY, baseRo
               : 'inset 0 20px 40px rgba(0,0,0,0.10), inset 0 -10px 20px rgba(0,0,0,0.08)',
           }}
         />
-      <div
-        style={{
-          pointerEvents: 'none',
-          position: 'absolute',
-          inset: 0,
-          borderRadius: 16,
-          overflow: 'hidden',
-        }}
-      >
+        <div
+          style={{
+            pointerEvents: 'none',
+            position: 'absolute',
+            inset: 0,
+            borderRadius: 16,
+            overflow: 'hidden',
+          }}
+        >
         <div
           style={{
             position: 'absolute',
@@ -226,7 +228,25 @@ function DraggableCard({ id, label, gradient, index, overlapClamp, baseY, baseRo
             mixBlendMode: 'screen',
           }}
         />
-      </div>
+        {/* Ingredient image, if provided */}
+        {image && (
+          <img
+            src={image}
+            alt={label}
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '50%',
+              width: '70%',
+              height: '70%',
+              transform: 'translate(-50%, -50%)',
+              filter: theme === 'light' ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.15))' : 'drop-shadow(0 6px 12px rgba(0,0,0,0.35))',
+              opacity: 0.96,
+              pointerEvents: 'none',
+            }}
+          />
+        )}
+        </div>
         <div
           style={{
             position: 'absolute',
@@ -468,6 +488,7 @@ export default function CardRow({ items, theme = 'dark', resetKey = 'r', onOrder
                   id={c.id}
                   label={c.label}
                   gradient={c.gradient}
+                  image={c.image}
                   index={idx}
                   overlapClamp={overlapClamp}
                   baseY={curve.y}
